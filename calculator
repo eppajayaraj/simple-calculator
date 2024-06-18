@@ -1,0 +1,102 @@
+import tkinter as tk
+from tkinter import *
+
+
+# Function to update entry widget when number or operator buttons are clicked
+def button_click(item):
+    current = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(0, current + item)
+
+# Function to clear the entry widget
+def button_clear():
+    entry.delete(0, tk.END)
+
+# Function to remove the last character from the entry widget
+def button_back():
+    current = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(0, current[:-1])
+
+# Function to evaluate the expression in the entry widget
+def button_equal():
+    try:
+        expression = entry.get()
+        result = eval(expression)  # Evaluate the expression
+        entry.delete(0, tk.END)
+        entry.insert(0, result)  # Display the result
+    except Exception as e:
+        entry.delete(0, tk.END)
+        entry.insert(0, "Error")
+
+
+root = tk.Tk()
+root.title("Calculator")
+root.geometry("600x600+100+100")
+
+entry = Entry(root, width=75, borderwidth=5)
+entry.grid(row=0, column=0, columnspan=5, padx=10, pady=10)
+
+# Creating buttons and placing them in the grid
+b = Button(root, text="1", command=lambda: button_click("1"), width="16", height="2", bg="red", fg="black")
+b.grid(column=0, row=1)
+
+b = Button(root, text="2", command=lambda: button_click("2"), width="16", height="2", bg="red", fg="black")
+b.grid(column=1, row=1)
+
+b = Button(root, text="3", command=lambda: button_click("3"), width="16", height="2", bg="red", fg="black")
+b.grid(column=2, row=1)
+
+b = Button(root, text="+", command=lambda: button_click("+"), width="16", height="2", bg="red", fg="black")
+b.grid(column=3, row=1)
+
+b = Button(root, text="4", command=lambda: button_click("4"), width="16", height="2", bg="red", fg="black")
+b.grid(column=0, row=2)
+
+b = Button(root, text="5", command=lambda: button_click("5"), width="16", height="2", bg="red", fg="black")
+b.grid(column=1, row=2)
+
+b = Button(root, text="6", command=lambda: button_click("6"), width="16", height="2", bg="red", fg="black")
+b.grid(column=2, row=2)
+
+b = Button(root, text="-", command=lambda: button_click("-"), width="16", height="2", bg="red", fg="black")
+b.grid(column=3, row=2)
+
+b = Button(root, text="7", command=lambda: button_click("7"), width="16", height="2", bg="red", fg="black")
+b.grid(column=0, row=3)
+
+b = Button(root, text="8", command=lambda: button_click("8"), width="16", height="2", bg="red", fg="black")
+b.grid(column=1, row=3)
+
+b = Button(root, text="9", command=lambda: button_click("9"), width="16", height="2", bg="red", fg="black")
+b.grid(column=2, row=3)
+
+b = Button(root, text="*", command=lambda: button_click("*"), width="16", height="2", bg="red", fg="black")
+b.grid(column=3, row=3)
+
+b = Button(root, text=".", command=lambda: button_click("."), width="16", height="2", bg="red", fg="black")
+b.grid(column=0, row=4)
+
+b = Button(root, text="0", command=lambda: button_click("0"), width="16", height="2", bg="red", fg="black")
+b.grid(column=1, row=4)
+
+b = Button(root, text="/", command=lambda: button_click("/"), width="16", height="2", bg="red", fg="black")
+b.grid(column=2, row=4)
+
+b = Button(root, text="=", command=button_equal, width="16", height="2", bg="red", fg="black")
+b.grid(column=3, row=4)
+
+b = Button(root, text="(", command=lambda: button_click("("), width="16", height="2", bg="red", fg="black")
+b.grid(column=0, row=5)
+
+b = Button(root, text=")", command=lambda: button_click(")"), width="16", height="2", bg="red", fg="black")
+b.grid(column=1, row=5)
+
+b = Button(root, text="back", command=button_back, width="16", height="2", bg="red", fg="black")
+b.grid(column=2, row=5)
+
+b = Button(root, text="clear", command=button_clear, width="16", height="2", bg="red", fg="black")
+b.grid(column=3, row=5)
+
+root.mainloop()
+
